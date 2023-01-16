@@ -7,4 +7,4 @@ open Miniml_parser
 open Miniml_typer
 
 (* ******** à compléter ********* *)
-       
+

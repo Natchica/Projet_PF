@@ -87,3 +87,94 @@ let unint =
 
 (* Fonctions de parsing de MiniML *)
 (* ******** à compléter ********* *)
+
+let inject : token Flux.t -> (bool, token Flux.t) = function flux ->
+  (true, flux)
+
+let accept : token -> token Flux.t -> (bool, token Flux.t) = function expected flux ->
+  let (a, next) = pickAndAdvance flux in 
+    match a with
+    | a when a = expected -> (true, next)
+    | _ -> (false, next)
+
+let acceptIdent : token Flux.t -> (bool, token Flux.t) = function flux ->
+  let (a, next) = pickAndAdvance flux in (isident a, next)
+
+let acceptInt : token Flux.t -> (bool, token Flux.t) = function flux ->
+  let (a, next) = pickAndAdvance flux in (isint a, next)
+
+let acceptBool : token Flux.t -> (bool, token Flux.t) = function flux ->
+  let (a, next) = pickAndAdvance flux in (isbool a, next)
+
+let (>>=) result f =
+  match result with
+  | (true, next) -> f next
+  | (false, _) -> false
+
+let pickAndAdvance : token Flux.t -> (token -> token Flux.t) = function tokens ->
+  match uncons tokens with
+  | None -> failwith "Le flux est vide"
+  | Some(a, next) -> (a, next)
+
+(* parseE : parseur d'une expression *)
+(* parseL : parseur d'une liaison *)
+(* parseBi : parseur d'une opération binaire *)
+(* parseA : parseur d'une opération arithmetique *)
+(* parseBo : parseur d'une opération booleene *)
+(* ParseR : parseur d'une opération relationnelle*)
+(* parseC : parseur d'une constante *)
+
+(*  E -> let X               *)
+(*    -> ( Y                 *)
+(*    -> if E then E else E  *)
+(*    -> ident               *)
+(*    -> Constant            *)
+let rec parserE : token Flux.t -> bool = function flux ->
+  (print_string "Expr -> ");
+  let (a, next) = pickAndAdvance flux in
+  match a with
+  | LET -> inject flux >>= accept LET >>= parseX
+  | PARO -> inject flux >>= accept PARO >>= parseY
+  | IF -> inject flux >>= accept IF >>= parseE >>= accept THEN >>= parse E >>= accept ELSE >>= parseE
+  | IDENT _ -> inject flux >>= acceptIdent
+  | _ -> parseC
+
+(*  X -> L in E      *)
+(*    -> rec L in E  *)
+let rec parseX : token Flux.t -> bool = function flux ->
+  (* TODO *)
+
+(*  Y -> E Z             *)
+(*    -> fun ident -> E  *)
+let rec parseY : token Flux.t -> bool = function flux ->
+  (* TODO *)
+
+(*  Z -> B E )  *)
+(*    -> )      *)
+(*    -> E )    *)
+let rec parseZ : token Flux.t -> bool = function flux ->
+  (* TODO *)
+
+(*  L -> ident = E  *)
+let rec parseL : token Flux.t -> bool = function flux ->
+  (* TODO *)
+
+(*  Bi -> A | Bo | R | @ | ::  *)
+let rec parseBi : token Flux.t -> bool = function flux ->
+  (* TODO *)
+
+(*  A -> + | - | * | /  *)
+let rec parseA : token Flux.t -> bool = function flux ->
+  (* TODO *)
+
+(*  Bo -> && | ||  *)
+let rec parseBo : token Flux.t -> bool = function flux ->
+  (* TODO *)
+
+(*  R -> = | <> | <= | < | >= | >  *)
+let rec parseR : token Flux.t -> bool = function flux ->
+  (* TODO *)
+
+(*  C -> entier | booleen | [] | ()  *)
+let rec parseC : token Flux.t -> bool = function flux ->
+  (* TODO *)

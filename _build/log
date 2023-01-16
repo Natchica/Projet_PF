@@ -1,0 +1,152 @@
+# dune build
+# OCAMLPARAM: unset
+# Workspace root: /home/lgaven/Annee_2/Projet_PF
+$ /usr/bin/nproc > /tmp/dune6f8537.output 2> /dev/null
+# Auto-detected concurrency: 4
+# disable binary cache
+$ /applications/opam/ocaml-base-compiler/bin/ocamlc.opt -config > /tmp/dune69c09e.output
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dyn
+#  ; merlin = true
+#  ; for_host = None
+#  ; fdo_target_exe = None
+#  ; build_dir = "default"
+#  ; toplevel_path =
+#      Some External "/applications/opam/ocaml-base-compiler/lib/toplevel"
+#  ; ocaml_bin = External "/applications/opam/ocaml-base-compiler/bin"
+#  ; ocaml = Ok External "/applications/opam/ocaml-base-compiler/bin/ocaml"
+#  ; ocamlc = External "/applications/opam/ocaml-base-compiler/bin/ocamlc.opt"
+#  ; ocamlopt =
+#      Ok External "/applications/opam/ocaml-base-compiler/bin/ocamlopt.opt"
+#  ; ocamldep =
+#      Ok External "/applications/opam/ocaml-base-compiler/bin/ocamldep.opt"
+#  ; ocamlmklib =
+#      Ok External "/applications/opam/ocaml-base-compiler/bin/ocamlmklib.opt"
+#  ; env =
+#      map
+#        { "DUNE_OCAML_HARDCODED" :
+#            "/applications/opam/ocaml-base-compiler/lib"
+#        ; "DUNE_OCAML_STDLIB" :
+#            "/applications/opam/ocaml-base-compiler/lib/ocaml"
+#        ; "DUNE_SOURCEROOT" : "/home/lgaven/Annee_2/Projet_PF"
+#        ; "INSIDE_DUNE" : "/home/lgaven/Annee_2/Projet_PF/_build/default"
+#        ; "OCAMLFIND_IGNORE_DUPS_IN" :
+#            "/home/lgaven/Annee_2/Projet_PF/_build/install/default/lib"
+#        ; "OCAMLPATH" :
+#            "/home/lgaven/Annee_2/Projet_PF/_build/install/default/lib"
+#        ; "OCAMLTOP_INCLUDE_PATH" :
+#            "/home/lgaven/Annee_2/Projet_PF/_build/install/default/lib/toplevel"
+#        ; "OCAML_COLOR" : "always"
+#        ; "OPAMCOLOR" : "always"
+#        }
+#  ; findlib_path = [ External "/applications/opam/ocaml-base-compiler/lib" ]
+#  ; arch_sixtyfour = true
+#  ; natdynlink_supported = true
+#  ; supports_shared_libraries = true
+#  ; ocaml_config =
+#      { version = "4.12.0"
+#      ; standard_library_default =
+#          "/applications/opam/ocaml-base-compiler/lib/ocaml"
+#      ; standard_library = "/applications/opam/ocaml-base-compiler/lib/ocaml"
+#      ; standard_runtime = "the_standard_runtime_variable_was_deleted"
+#      ; ccomp_type = "cc"
+#      ; c_compiler = "gcc"
+#      ; ocamlc_cflags = [ "-O2"; "-fno-strict-aliasing"; "-fwrapv"; "-fPIC" ]
+#      ; ocamlc_cppflags = [ "-D_FILE_OFFSET_BITS=64"; "-D_REENTRANT" ]
+#      ; ocamlopt_cflags =
+#          [ "-O2"; "-fno-strict-aliasing"; "-fwrapv"; "-fPIC" ]
+#      ; ocamlopt_cppflags = [ "-D_FILE_OFFSET_BITS=64"; "-D_REENTRANT" ]
+#      ; bytecomp_c_compiler =
+#          [ "gcc"
+#          ; "-O2"
+#          ; "-fno-strict-aliasing"
+#          ; "-fwrapv"
+#          ; "-fPIC"
+#          ; "-D_FILE_OFFSET_BITS=64"
+#          ; "-D_REENTRANT"
+#          ]
+#      ; bytecomp_c_libraries = [ "-lm"; "-ldl"; "-lpthread" ]
+#      ; native_c_compiler =
+#          [ "gcc"
+#          ; "-O2"
+#          ; "-fno-strict-aliasing"
+#          ; "-fwrapv"
+#          ; "-fPIC"
+#          ; "-D_FILE_OFFSET_BITS=64"
+#          ; "-D_REENTRANT"
+#          ]
+#      ; native_c_libraries = [ "-lm"; "-ldl" ]
+#      ; cc_profile = []
+#      ; architecture = "amd64"
+#      ; model = "default"
+#      ; int_size = 63
+#      ; word_size = 64
+#      ; system = "linux"
+#      ; asm = [ "as" ]
+#      ; asm_cfi_supported = true
+#      ; with_frame_pointers = false
+#      ; ext_exe = ""
+#      ; ext_obj = ".o"
+#      ; ext_asm = ".s"
+#      ; ext_lib = ".a"
+#      ; ext_dll = ".so"
+#      ; os_type = "Unix"
+#      ; default_executable_name = "a.out"
+#      ; systhread_supported = true
+#      ; host = "x86_64-pc-linux-gnu"
+#      ; target = "x86_64-pc-linux-gnu"
+#      ; profiling = false
+#      ; flambda = false
+#      ; spacetime = false
+#      ; safe_string = true
+#      ; exec_magic_number = "Caml1999X029"
+#      ; cmi_magic_number = "Caml1999I029"
+#      ; cmo_magic_number = "Caml1999O029"
+#      ; cma_magic_number = "Caml1999A029"
+#      ; cmx_magic_number = "Caml1999Y029"
+#      ; cmxa_magic_number = "Caml1999Z029"
+#      ; ast_impl_magic_number = "Caml1999M029"
+#      ; ast_intf_magic_number = "Caml1999N029"
+#      ; cmxs_magic_number = "Caml1999D029"
+#      ; cmt_magic_number = "Caml1999T029"
+#      ; natdynlink_supported = true
+#      ; supports_shared_libraries = true
+#      ; windows_unicode = false
+#      }
+#  }
+$ (cd _build/default && /applications/opam/ocaml-base-compiler/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -49 -nopervasives -nostdlib -g -bin-annot -I miniml_distrib_etud/lib/.miniml.objs/byte -no-alias-deps -opaque -o miniml_distrib_etud/lib/.miniml.objs/byte/miniml.cmo -c -impl miniml_distrib_etud/lib/miniml.ml-gen)
+$ (cd _build/default && /applications/opam/ocaml-base-compiler/bin/ocamlc.opt -g -w -24 -I .ppx/bfcab61e6a21ecf6d2f80029fc1ef484 -I /applications/opam/ocaml-base-compiler/lib/base -I /applications/opam/ocaml-base-compiler/lib/base/base_internalhash_types -I /applications/opam/ocaml-base-compiler/lib/base/caml -I /applications/opam/ocaml-base-compiler/lib/base/shadow_stdlib -I /applications/opam/ocaml-base-compiler/lib/ocaml-compiler-libs/common -I /applications/opam/ocaml-base-compiler/lib/ocaml-compiler-libs/shadow -I /applications/opam/ocaml-base-compiler/lib/ocaml/compiler-libs -I /applications/opam/ocaml-base-compiler/lib/ppx_derivers -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/libname -I /applications/opam/ocaml-base-compiler/lib/ppxlib -I /applications/opam/ocaml-base-compiler/lib/ppxlib/ast -I /applications/opam/ocaml-base-compiler/lib/ppxlib/astlib -I /applications/opam/ocaml-base-compiler/lib/ppxlib/print_diff -I /applications/opam/ocaml-base-compiler/lib/ppxlib/stdppx -I /applications/opam/ocaml-base-compiler/lib/ppxlib/traverse_builtins -I /applications/opam/ocaml-base-compiler/lib/sexplib0 -I /applications/opam/ocaml-base-compiler/lib/stdlib-shims -no-alias-deps -o .ppx/bfcab61e6a21ecf6d2f80029fc1ef484/dune__exe___ppx.cmo -c -impl .ppx/bfcab61e6a21ecf6d2f80029fc1ef484/_ppx.ml-gen)
+$ (cd _build/default && /applications/opam/ocaml-base-compiler/bin/ocamllex -q -o miniml_distrib_etud/lib/miniml_lexer.ml miniml_distrib_etud/lib/miniml_lexer.mll)
+$ (cd _build/default && /applications/opam/ocaml-base-compiler/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -49 -nopervasives -nostdlib -g -I miniml_distrib_etud/lib/.miniml.objs/byte -I miniml_distrib_etud/lib/.miniml.objs/native -intf-suffix .ml-gen -no-alias-deps -opaque -o miniml_distrib_etud/lib/.miniml.objs/native/miniml.cmx -c -impl miniml_distrib_etud/lib/miniml.ml-gen)
+$ (cd _build/default && /applications/opam/ocaml-base-compiler/bin/ocamlopt.opt -g -w -24 -I .ppx/bfcab61e6a21ecf6d2f80029fc1ef484 -I /applications/opam/ocaml-base-compiler/lib/base -I /applications/opam/ocaml-base-compiler/lib/base/base_internalhash_types -I /applications/opam/ocaml-base-compiler/lib/base/caml -I /applications/opam/ocaml-base-compiler/lib/base/shadow_stdlib -I /applications/opam/ocaml-base-compiler/lib/ocaml-compiler-libs/common -I /applications/opam/ocaml-base-compiler/lib/ocaml-compiler-libs/shadow -I /applications/opam/ocaml-base-compiler/lib/ocaml/compiler-libs -I /applications/opam/ocaml-base-compiler/lib/ppx_derivers -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/libname -I /applications/opam/ocaml-base-compiler/lib/ppxlib -I /applications/opam/ocaml-base-compiler/lib/ppxlib/ast -I /applications/opam/ocaml-base-compiler/lib/ppxlib/astlib -I /applications/opam/ocaml-base-compiler/lib/ppxlib/print_diff -I /applications/opam/ocaml-base-compiler/lib/ppxlib/stdppx -I /applications/opam/ocaml-base-compiler/lib/ppxlib/traverse_builtins -I /applications/opam/ocaml-base-compiler/lib/sexplib0 -I /applications/opam/ocaml-base-compiler/lib/stdlib-shims -intf-suffix .ml-gen -no-alias-deps -o .ppx/bfcab61e6a21ecf6d2f80029fc1ef484/dune__exe___ppx.cmx -c -impl .ppx/bfcab61e6a21ecf6d2f80029fc1ef484/_ppx.ml-gen)
+$ (cd _build/default && /applications/opam/ocaml-base-compiler/bin/ocamlopt.opt -g -w -24 -o .ppx/bfcab61e6a21ecf6d2f80029fc1ef484/ppx.exe /applications/opam/ocaml-base-compiler/lib/base/base_internalhash_types/base_internalhash_types.cmxa -I /applications/opam/ocaml-base-compiler/lib/base/base_internalhash_types /applications/opam/ocaml-base-compiler/lib/base/caml/caml.cmxa /applications/opam/ocaml-base-compiler/lib/sexplib0/sexplib0.cmxa /applications/opam/ocaml-base-compiler/lib/base/shadow_stdlib/shadow_stdlib.cmxa /applications/opam/ocaml-base-compiler/lib/base/base.cmxa -I /applications/opam/ocaml-base-compiler/lib/base /applications/opam/ocaml-base-compiler/lib/ocaml/compiler-libs/ocamlcommon.cmxa /applications/opam/ocaml-base-compiler/lib/ocaml-compiler-libs/common/ocaml_common.cmxa /applications/opam/ocaml-base-compiler/lib/ppxlib/astlib/astlib.cmxa /applications/opam/ocaml-base-compiler/lib/stdlib-shims/stdlib_shims.cmxa /applications/opam/ocaml-base-compiler/lib/ppxlib/ast/ppxlib_ast.cmxa /applications/opam/ocaml-base-compiler/lib/ocaml-compiler-libs/shadow/ocaml_shadow.cmxa /applications/opam/ocaml-base-compiler/lib/ppxlib/print_diff/ppxlib_print_diff.cmxa /applications/opam/ocaml-base-compiler/lib/ppx_derivers/ppx_derivers.cmxa /applications/opam/ocaml-base-compiler/lib/ppxlib/traverse_builtins/ppxlib_traverse_builtins.cmxa /applications/opam/ocaml-base-compiler/lib/ppxlib/stdppx/stdppx.cmxa /applications/opam/ocaml-base-compiler/lib/ppxlib/ppxlib.cmxa /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/libname/ppx_inline_test_libname.cmxa /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/ppx_inline_test.cmxa .ppx/bfcab61e6a21ecf6d2f80029fc1ef484/dune__exe___ppx.cmx)
+$ (cd _build/default && .ppx/bfcab61e6a21ecf6d2f80029fc1ef484/ppx.exe --cookie 'inline_tests="enabled"' --cookie 'library-name="miniml"' -o miniml_distrib_etud/lib/lazyflux.pp.ml --impl miniml_distrib_etud/lib/lazyflux.ml -corrected-suffix .ppx-corrected -diff-cmd - -dump-ast)
+$ (cd _build/default && .ppx/bfcab61e6a21ecf6d2f80029fc1ef484/ppx.exe --cookie 'inline_tests="enabled"' --cookie 'library-name="miniml"' -o miniml_distrib_etud/lib/miniml_printer.pp.ml --impl miniml_distrib_etud/lib/miniml_printer.ml -corrected-suffix .ppx-corrected -diff-cmd - -dump-ast)
+$ (cd _build/default && .ppx/bfcab61e6a21ecf6d2f80029fc1ef484/ppx.exe --cookie 'inline_tests="enabled"' --cookie 'library-name="miniml"' -o miniml_distrib_etud/lib/miniml_lexer.pp.ml --impl miniml_distrib_etud/lib/miniml_lexer.ml -corrected-suffix .ppx-corrected -diff-cmd - -dump-ast)
+$ (cd _build/default && .ppx/bfcab61e6a21ecf6d2f80029fc1ef484/ppx.exe --cookie 'inline_tests="enabled"' --cookie 'library-name="miniml"' -o miniml_distrib_etud/lib/miniml_parser.pp.ml --impl miniml_distrib_etud/lib/miniml_parser.ml -corrected-suffix .ppx-corrected -diff-cmd - -dump-ast)
+$ (cd _build/default && .ppx/bfcab61e6a21ecf6d2f80029fc1ef484/ppx.exe --cookie 'inline_tests="enabled"' --cookie 'library-name="miniml"' -o miniml_distrib_etud/lib/miniml_typer.pp.ml --impl miniml_distrib_etud/lib/miniml_typer.ml -corrected-suffix .ppx-corrected -diff-cmd - -dump-ast)
+$ (cd _build/default && .ppx/bfcab61e6a21ecf6d2f80029fc1ef484/ppx.exe --cookie 'inline_tests="enabled"' --cookie 'library-name="miniml"' -o miniml_distrib_etud/lib/miniml_types.pp.ml --impl miniml_distrib_etud/lib/miniml_types.ml -corrected-suffix .ppx-corrected -diff-cmd - -dump-ast)
+$ (cd _build/default && /applications/opam/ocaml-base-compiler/bin/ocamldep.opt -modules -impl miniml_distrib_etud/lib/miniml_printer.pp.ml) > _build/default/miniml_distrib_etud/lib/.miniml.objs/miniml_printer.pp.ml.d
+$ (cd _build/default && /applications/opam/ocaml-base-compiler/bin/ocamldep.opt -modules -impl miniml_distrib_etud/lib/lazyflux.pp.ml) > _build/default/miniml_distrib_etud/lib/.miniml.objs/lazyflux.pp.ml.d
+$ (cd _build/default && /applications/opam/ocaml-base-compiler/bin/ocamldep.opt -modules -impl miniml_distrib_etud/lib/miniml_lexer.pp.ml) > _build/default/miniml_distrib_etud/lib/.miniml.objs/miniml_lexer.pp.ml.d
+$ (cd _build/default && /applications/opam/ocaml-base-compiler/bin/ocamldep.opt -modules -impl miniml_distrib_etud/lib/miniml_parser.pp.ml) > _build/default/miniml_distrib_etud/lib/.miniml.objs/miniml_parser.pp.ml.d
+$ (cd _build/default && /applications/opam/ocaml-base-compiler/bin/ocamldep.opt -modules -impl miniml_distrib_etud/lib/miniml_typer.pp.ml) > _build/default/miniml_distrib_etud/lib/.miniml.objs/miniml_typer.pp.ml.d
+$ (cd _build/default && /applications/opam/ocaml-base-compiler/bin/ocamldep.opt -modules -impl miniml_distrib_etud/lib/miniml_types.pp.ml) > _build/default/miniml_distrib_etud/lib/.miniml.objs/miniml_types.pp.ml.d
+$ (cd _build/default && /applications/opam/ocaml-base-compiler/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I miniml_distrib_etud/lib/.miniml.objs/byte -I /applications/opam/ocaml-base-compiler/lib/base -I /applications/opam/ocaml-base-compiler/lib/base/base_internalhash_types -I /applications/opam/ocaml-base-compiler/lib/base/caml -I /applications/opam/ocaml-base-compiler/lib/base/shadow_stdlib -I /applications/opam/ocaml-base-compiler/lib/jane-street-headers -I /applications/opam/ocaml-base-compiler/lib/ppx_compare/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_enumerate/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_hash/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/config -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_sexp_conv/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/sexplib0 -I /applications/opam/ocaml-base-compiler/lib/time_now -no-alias-deps -opaque -open Miniml -o miniml_distrib_etud/lib/.miniml.objs/byte/miniml__Lazyflux.cmo -c -impl miniml_distrib_etud/lib/lazyflux.pp.ml)
+$ (cd _build/default && /applications/opam/ocaml-base-compiler/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I miniml_distrib_etud/lib/.miniml.objs/byte -I /applications/opam/ocaml-base-compiler/lib/base -I /applications/opam/ocaml-base-compiler/lib/base/base_internalhash_types -I /applications/opam/ocaml-base-compiler/lib/base/caml -I /applications/opam/ocaml-base-compiler/lib/base/shadow_stdlib -I /applications/opam/ocaml-base-compiler/lib/jane-street-headers -I /applications/opam/ocaml-base-compiler/lib/ppx_compare/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_enumerate/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_hash/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/config -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_sexp_conv/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/sexplib0 -I /applications/opam/ocaml-base-compiler/lib/time_now -no-alias-deps -opaque -open Miniml -o miniml_distrib_etud/lib/.miniml.objs/byte/miniml__Miniml_types.cmo -c -impl miniml_distrib_etud/lib/miniml_types.pp.ml)
+$ (cd _build/default && /applications/opam/ocaml-base-compiler/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I miniml_distrib_etud/lib/.miniml.objs/byte -I miniml_distrib_etud/lib/.miniml.objs/native -I /applications/opam/ocaml-base-compiler/lib/base -I /applications/opam/ocaml-base-compiler/lib/base/base_internalhash_types -I /applications/opam/ocaml-base-compiler/lib/base/caml -I /applications/opam/ocaml-base-compiler/lib/base/shadow_stdlib -I /applications/opam/ocaml-base-compiler/lib/jane-street-headers -I /applications/opam/ocaml-base-compiler/lib/ppx_compare/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_enumerate/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_hash/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/config -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_sexp_conv/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/sexplib0 -I /applications/opam/ocaml-base-compiler/lib/time_now -intf-suffix .ml -no-alias-deps -opaque -open Miniml -o miniml_distrib_etud/lib/.miniml.objs/native/miniml__Lazyflux.cmx -c -impl miniml_distrib_etud/lib/lazyflux.pp.ml)
+$ (cd _build/default && /applications/opam/ocaml-base-compiler/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I miniml_distrib_etud/lib/.miniml.objs/byte -I miniml_distrib_etud/lib/.miniml.objs/native -I /applications/opam/ocaml-base-compiler/lib/base -I /applications/opam/ocaml-base-compiler/lib/base/base_internalhash_types -I /applications/opam/ocaml-base-compiler/lib/base/caml -I /applications/opam/ocaml-base-compiler/lib/base/shadow_stdlib -I /applications/opam/ocaml-base-compiler/lib/jane-street-headers -I /applications/opam/ocaml-base-compiler/lib/ppx_compare/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_enumerate/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_hash/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/config -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_sexp_conv/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/sexplib0 -I /applications/opam/ocaml-base-compiler/lib/time_now -intf-suffix .ml -no-alias-deps -opaque -open Miniml -o miniml_distrib_etud/lib/.miniml.objs/native/miniml__Miniml_types.cmx -c -impl miniml_distrib_etud/lib/miniml_types.pp.ml)
+$ (cd _build/default && /applications/opam/ocaml-base-compiler/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I miniml_distrib_etud/lib/.miniml.objs/byte -I /applications/opam/ocaml-base-compiler/lib/base -I /applications/opam/ocaml-base-compiler/lib/base/base_internalhash_types -I /applications/opam/ocaml-base-compiler/lib/base/caml -I /applications/opam/ocaml-base-compiler/lib/base/shadow_stdlib -I /applications/opam/ocaml-base-compiler/lib/jane-street-headers -I /applications/opam/ocaml-base-compiler/lib/ppx_compare/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_enumerate/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_hash/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/config -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_sexp_conv/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/sexplib0 -I /applications/opam/ocaml-base-compiler/lib/time_now -no-alias-deps -opaque -open Miniml -o miniml_distrib_etud/lib/.miniml.objs/byte/miniml__Miniml_lexer.cmo -c -impl miniml_distrib_etud/lib/miniml_lexer.pp.ml)
+$ (cd _build/default && /applications/opam/ocaml-base-compiler/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I miniml_distrib_etud/lib/.miniml.objs/byte -I /applications/opam/ocaml-base-compiler/lib/base -I /applications/opam/ocaml-base-compiler/lib/base/base_internalhash_types -I /applications/opam/ocaml-base-compiler/lib/base/caml -I /applications/opam/ocaml-base-compiler/lib/base/shadow_stdlib -I /applications/opam/ocaml-base-compiler/lib/jane-street-headers -I /applications/opam/ocaml-base-compiler/lib/ppx_compare/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_enumerate/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_hash/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/config -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_sexp_conv/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/sexplib0 -I /applications/opam/ocaml-base-compiler/lib/time_now -no-alias-deps -opaque -open Miniml -o miniml_distrib_etud/lib/.miniml.objs/byte/miniml__Miniml_typer.cmo -c -impl miniml_distrib_etud/lib/miniml_typer.pp.ml)
+> File "miniml_distrib_etud/lib/miniml_typer.ml", line 1, characters 0-17:
+> 1 | open Miniml_types
+>     ^^^^^^^^^^^^^^^^^
+> Error (warning 33 [unused-open]): unused open Miniml.Miniml_types.
+[2]
+$ (cd _build/default && /applications/opam/ocaml-base-compiler/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I miniml_distrib_etud/lib/.miniml.objs/byte -I /applications/opam/ocaml-base-compiler/lib/base -I /applications/opam/ocaml-base-compiler/lib/base/base_internalhash_types -I /applications/opam/ocaml-base-compiler/lib/base/caml -I /applications/opam/ocaml-base-compiler/lib/base/shadow_stdlib -I /applications/opam/ocaml-base-compiler/lib/jane-street-headers -I /applications/opam/ocaml-base-compiler/lib/ppx_compare/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_enumerate/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_hash/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/config -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_sexp_conv/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/sexplib0 -I /applications/opam/ocaml-base-compiler/lib/time_now -no-alias-deps -opaque -open Miniml -o miniml_distrib_etud/lib/.miniml.objs/byte/miniml__Miniml_printer.cmo -c -impl miniml_distrib_etud/lib/miniml_printer.pp.ml)
+$ (cd _build/default && /applications/opam/ocaml-base-compiler/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I miniml_distrib_etud/lib/.miniml.objs/byte -I /applications/opam/ocaml-base-compiler/lib/base -I /applications/opam/ocaml-base-compiler/lib/base/base_internalhash_types -I /applications/opam/ocaml-base-compiler/lib/base/caml -I /applications/opam/ocaml-base-compiler/lib/base/shadow_stdlib -I /applications/opam/ocaml-base-compiler/lib/jane-street-headers -I /applications/opam/ocaml-base-compiler/lib/ppx_compare/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_enumerate/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_hash/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/config -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_sexp_conv/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/sexplib0 -I /applications/opam/ocaml-base-compiler/lib/time_now -no-alias-deps -opaque -open Miniml -o miniml_distrib_etud/lib/.miniml.objs/byte/miniml__Miniml_parser.cmo -c -impl miniml_distrib_etud/lib/miniml_parser.pp.ml)
+$ (cd _build/default && /applications/opam/ocaml-base-compiler/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I miniml_distrib_etud/lib/.miniml.objs/byte -I miniml_distrib_etud/lib/.miniml.objs/native -I /applications/opam/ocaml-base-compiler/lib/base -I /applications/opam/ocaml-base-compiler/lib/base/base_internalhash_types -I /applications/opam/ocaml-base-compiler/lib/base/caml -I /applications/opam/ocaml-base-compiler/lib/base/shadow_stdlib -I /applications/opam/ocaml-base-compiler/lib/jane-street-headers -I /applications/opam/ocaml-base-compiler/lib/ppx_compare/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_enumerate/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_hash/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/config -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_sexp_conv/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/sexplib0 -I /applications/opam/ocaml-base-compiler/lib/time_now -intf-suffix .ml -no-alias-deps -opaque -open Miniml -o miniml_distrib_etud/lib/.miniml.objs/native/miniml__Miniml_lexer.cmx -c -impl miniml_distrib_etud/lib/miniml_lexer.pp.ml)
+$ (cd _build/default && /applications/opam/ocaml-base-compiler/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I miniml_distrib_etud/lib/.miniml.objs/byte -I miniml_distrib_etud/lib/.miniml.objs/native -I /applications/opam/ocaml-base-compiler/lib/base -I /applications/opam/ocaml-base-compiler/lib/base/base_internalhash_types -I /applications/opam/ocaml-base-compiler/lib/base/caml -I /applications/opam/ocaml-base-compiler/lib/base/shadow_stdlib -I /applications/opam/ocaml-base-compiler/lib/jane-street-headers -I /applications/opam/ocaml-base-compiler/lib/ppx_compare/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_enumerate/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_hash/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/config -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_sexp_conv/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/sexplib0 -I /applications/opam/ocaml-base-compiler/lib/time_now -intf-suffix .ml -no-alias-deps -opaque -open Miniml -o miniml_distrib_etud/lib/.miniml.objs/native/miniml__Miniml_printer.cmx -c -impl miniml_distrib_etud/lib/miniml_printer.pp.ml)
+$ (cd _build/default && /applications/opam/ocaml-base-compiler/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I miniml_distrib_etud/lib/.miniml.objs/byte -I miniml_distrib_etud/lib/.miniml.objs/native -I /applications/opam/ocaml-base-compiler/lib/base -I /applications/opam/ocaml-base-compiler/lib/base/base_internalhash_types -I /applications/opam/ocaml-base-compiler/lib/base/caml -I /applications/opam/ocaml-base-compiler/lib/base/shadow_stdlib -I /applications/opam/ocaml-base-compiler/lib/jane-street-headers -I /applications/opam/ocaml-base-compiler/lib/ppx_compare/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_enumerate/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_hash/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/config -I /applications/opam/ocaml-base-compiler/lib/ppx_inline_test/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/ppx_sexp_conv/runtime-lib -I /applications/opam/ocaml-base-compiler/lib/sexplib0 -I /applications/opam/ocaml-base-compiler/lib/time_now -intf-suffix .ml -no-alias-deps -opaque -open Miniml -o miniml_distrib_etud/lib/.miniml.objs/native/miniml__Miniml_parser.cmx -c -impl miniml_distrib_etud/lib/miniml_parser.pp.ml)
