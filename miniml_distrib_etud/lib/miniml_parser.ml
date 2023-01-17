@@ -129,52 +129,102 @@ let pickAndAdvance : token Flux.t -> (token -> token Flux.t) = function tokens -
 (*    -> if E then E else E  *)
 (*    -> ident               *)
 (*    -> Constant            *)
-let rec parserE : token Flux.t -> bool = function flux ->
+let rec parseE : token Flux.t -> bool = function flux ->
   (print_string "Expr -> ");
   let (a, next) = pickAndAdvance flux in
   match a with
   | LET -> inject flux >>= accept LET >>= parseX
   | PARO -> inject flux >>= accept PARO >>= parseY
-  | IF -> inject flux >>= accept IF >>= parseE >>= accept THEN >>= parse E >>= accept ELSE >>= parseE
+  | IF -> inject flux >>= accept IF >>= parseE >>= accept THEN >>= parseE >>= accept ELSE >>= parseE
   | IDENT _ -> inject flux >>= acceptIdent
   | _ -> parseC
 
 (*  X -> L in E      *)
 (*    -> rec L in E  *)
 let rec parseX : token Flux.t -> bool = function flux ->
-  (* TODO *)
+  (print_string "let -> ");
+  let (a, next) = pickAndAdvance flux in
+  match a with
+  | IDENT _ -> inject flux >>= parseL >>= accept IN >>= parseE
+  | REC -> inject flux >>= accept REC >>= parseL >>= accept IN >>= parseE
+  | _ -> failwith "erreur parseX"
 
 (*  Y -> E Z             *)
 (*    -> fun ident -> E  *)
 let rec parseY : token Flux.t -> bool = function flux ->
-  (* TODO *)
+  (print_string "( -> ");
+  let (a, next) = pickAndAdvance flux in
+  match a with
+  | FUN -> inject flux >>= accept FUN >>= acceptIdent >>= accept TO >>= parseE
+  | _ -> inject flux >>= parseE >>= parseZ
 
 (*  Z -> B E )  *)
 (*    -> )      *)
 (*    -> E )    *)
 let rec parseZ : token Flux.t -> bool = function flux ->
-  (* TODO *)
+  (print_string "( Expr -> ");
+  let (a, next) = pickAndAdvance flux in
+  match a with
+  | PARF -> inject flux >>= accept PARF
+  | PLUS | MOINS | MULT | DIV | AND | OR | EQU | NOTEQ | INFEQ | INF | SUPEQ | SUP | INT _ | BOOL _ | CROO | PARO -> inject flux >>= parseBi >>= parseE >>= accept PARF
+  | _ -> inject flux >>= parseE >>= accept PARF
 
 (*  L -> ident = E  *)
 let rec parseL : token Flux.t -> bool = function flux ->
-  (* TODO *)
+  (print_string "Liaison -> ");
+  inject flux >>= acceptIdent >>= accept EQU >>= parseE
 
 (*  Bi -> A | Bo | R | @ | ::  *)
 let rec parseBi : token Flux.t -> bool = function flux ->
-  (* TODO *)
+  (print_string "Binop -> ");
+  let (a, next) = pickAndAdvance flux in
+  match a with
+  | PLUS | MOINS | MULT | DIV -> inject flux >>= parseA
+  | AND | OR -> inject flux >>= parseBo
+  | EQU | NOTEQ | INFEQ | INF | SUPEQ | SUP -> inject flux >>= parseR
+  | INT _ | BOOL _ | CROO | PARO -> inject flux >>= parseC
+  | _ -> failwith "erreur parseBi"
 
 (*  A -> + | - | * | /  *)
 let rec parseA : token Flux.t -> bool = function flux ->
-  (* TODO *)
+  (print_string "Arithop -> ");
+  let (a, next) = pickAndAdvance flux in
+  match a with
+  | PLUS -> inject flux >>= accept PLUS
+  | MOINS -> inject flux >>= accept MOINS
+  | MULT -> inject flux >>= accept MULT
+  | DIV -> inject flux >>= accept DIV
+  | _ -> failwith "erreur parseA"
 
 (*  Bo -> && | ||  *)
 let rec parseBo : token Flux.t -> bool = function flux ->
-  (* TODO *)
+  (print_string "Boolop -> ");
+  let (a, next) = pickAndAdvance flux in
+  match a with
+  | AND -> inject flux >>= accept AND
+  | OR -> inject flux >>= accept OR
+  | _ -> failwith "erreur parseBo"
 
 (*  R -> = | <> | <= | < | >= | >  *)
 let rec parseR : token Flux.t -> bool = function flux ->
-  (* TODO *)
+  (print_string "Relop -> ");
+  let (a, next) = pickAndAdvance flux in
+  match a with
+  | EQU -> inject flux >>= accept EQU
+  | NOTEQ -> inject flux >>= accept NOTEQ
+  | INFEQ -> inject flux >>= accept INFEQ
+  | INF -> inject flux >>= accept INF
+  | SUPEQ -> inject flux >>= accept SUPEQ
+  | SUP -> inject flux >>= accept SUP
+  | _ -> failwith "erreur parseR"
 
 (*  C -> entier | booleen | [] | ()  *)
 let rec parseC : token Flux.t -> bool = function flux ->
-  (* TODO *)
+  (print_string "Constant -> ");
+  let (a, next) = pickAndAdvance flux in
+  match a with
+  | INT _ -> inject flux >>= acceptIdent
+  | BOOL _ -> inject flux >>= acceptBool
+  | CROO -> inject flux >>= accept CROO >>= accept CROF
+  | PARO -> inject flux >>= accept PARO >>= accept PARF
+  | _ -> failwith "erreur parseC"
