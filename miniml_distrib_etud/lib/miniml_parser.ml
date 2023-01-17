@@ -150,12 +150,12 @@ let rec parseX : token Flux.t -> bool = function flux ->
   | _ -> failwith "erreur parseX"
 
 (*  Y -> E Z             *)
-(*    -> fun ident -> E  *)
+(*    -> fun ident -> E )  *)
 let rec parseY : token Flux.t -> bool = function flux ->
   (print_string "( -> ");
   let (a, next) = pickAndAdvance flux in
   match a with
-  | FUN -> inject flux >>= accept FUN >>= acceptIdent >>= accept TO >>= parseE
+  | FUN -> inject flux >>= accept FUN >>= acceptIdent >>= accept TO >>= parseE >>= accept PARF
   | _ -> inject flux >>= parseE >>= parseZ
 
 (*  Z -> B E )  *)
@@ -166,7 +166,7 @@ let rec parseZ : token Flux.t -> bool = function flux ->
   let (a, next) = pickAndAdvance flux in
   match a with
   | PARF -> inject flux >>= accept PARF
-  | PLUS | MOINS | MULT | DIV | AND | OR | EQU | NOTEQ | INFEQ | INF | SUPEQ | SUP | INT _ | BOOL _ | CROO | PARO -> inject flux >>= parseBi >>= parseE >>= accept PARF
+  | PLUS | MOINS | MULT | DIV | AND | OR | EQU | NOTEQ | INFEQ | INF | SUPEQ | SUP | CONCAT | CONS -> inject flux >>= parseBi >>= parseE >>= accept PARF
   | _ -> inject flux >>= parseE >>= accept PARF
 
 (*  L -> ident = E  *)
@@ -182,7 +182,8 @@ let rec parseBi : token Flux.t -> bool = function flux ->
   | PLUS | MOINS | MULT | DIV -> inject flux >>= parseA
   | AND | OR -> inject flux >>= parseBo
   | EQU | NOTEQ | INFEQ | INF | SUPEQ | SUP -> inject flux >>= parseR
-  | INT _ | BOOL _ | CROO | PARO -> inject flux >>= parseC
+  | CONCAT -> inject flux >>= accept CONCAT
+  | CONS -> inject flux >>= accept CONS
   | _ -> failwith "erreur parseBi"
 
 (*  A -> + | - | * | /  *)
