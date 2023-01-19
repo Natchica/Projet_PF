@@ -24,7 +24,7 @@ module type VariableSpec =
   end
 
 (* implantation de la spécification     *)
-module TypeVariable : VariableSpec =
+module TypeVariable : VariableSpec (* with type t = int *)=
   struct
     type t = int
 
@@ -41,4 +41,41 @@ module TypeVariable : VariableSpec =
 
 
 (* ******** à compléter ********* *)
-       
+module VarHashtbl = Hashtbl.Make(TypeVariable)
+let gamma0 = VarHashtbl.create 11
+let arithm = (CONCAT , TFun(TProd(TInt, TInt), TInt))
+let relop : token * 'a typ = (CONCAT, TFun(TProd(TVar(a), TVar(a)), TInt))
+let i = TypeVariable.fraiche() ;;
+VarHashtbl.add gamma0 i concat
+let x = Hashtbl.find_all gamma0 1
+
+
+(* create an empty environment *)
+let gamma0 : (TypeVariable.t * 'a typ) list = []
+
+(* add predefined types to the environment *)
+let gamma0 = (TypeVariable.fraiche(), TList(TVar('a))) :: gamma0
+let gamma0 = (TypeVariable.fraiche(), TFun(TProd(TVar('a), TVar('a)), TList(TVar('a)))) :: gamma0
+let gamma0 = (TypeVariable.fraiche(), TFun(TProd(TVar('a), TVar('b)), TProd(TVar('a), TVar('b)))) :: gamma0
+let gamma0 = (TypeVariable.fraiche(), TFun(TInt, TInt)) :: gamma0
+let gamma0 = (TypeVariable.fraiche(), TFun(TVar('a), TBool)) :: gamma0
+let gamma0 = (TypeVariable.fraiche(), TFun(TBool, TBool)) :: gamma0
+let gamma0 = (TypeVariable.fraiche(), TFun(TVar('a), TVar('a))) :: gamma0
+let gamma0 = (TypeVariable.fraiche(), TFun(TProd(TVar('a), TVar('b)), TVar('a))) :: gamma0
+let gamma0 = (TypeVariable.fraiche(), TFun(TProd(TVar('a), TVar('b)), TVar('b))) :: gamma0
+let gamma0 = (TypeVariable.fraiche(), TFun(TList(TVar('a)), TVar('a))) :: gamma0
+let gamma0 = (TypeVariable.fraiche(), TFun(TList(TVar('a)), TList(TVar('a)))) :: gamma0
+
+(* add some more types to the environment *)
+let gamma0 = (TypeVariable.fraiche(), TFun(TVar('a), TUnit)) :: gamma0
+let gamma0 = (TypeVariable.fraiche(), TFun(TProd(TVar('a), TVar('b)), TBool)) :: gamma0
+
+(* use the environment in a type inference algorithm )
+let infer_type (e: 'a expr) (Γ: (TypeVariable.t * 'a typ) list) : 'a typ =
+( implementation of the type inference algorithm *)
+(*
+This code defines an empty environment gamma0 as a list of tuples (TypeVariable.t * 'a typ)
+, and then adds the predefined types of the standard operations such as the 
+concatenation operator for lists (@), the construction operator for lists (::), 
+the construction operator for pairs (,), arithmetic binary operators 
+*)
