@@ -5,6 +5,7 @@ open Miniml
 open Miniml_lexer
 open Miniml_parser
 open Miniml_typer
+open Lazyflux
 
 (* ******** à compléter ********* *)
 
@@ -13,10 +14,19 @@ open Miniml_typer
 (* Affiche OK si l'analyse syntaxique c'est bien passée et KO sinon *)
 let main () =
     let flux = read_miniml_tokens_from_file Sys.argv.(1) in
-    match (parseE flux)
-     with
-       | (true, _) -> print_endline "Ok"
-       | _ -> print_endline "Ko"
+
+
+    let rec loop f = match Flux.uncons f with
+      | None -> print_endline "End of file"
+      | Some _ -> 
+        let (b, next) = parseE f in 
+        if b then (print_endline "Line ok"; loop next) 
+        else print_endline "Ko"
+    in loop flux
+
+   
+
+
 ;;
 
 main();;

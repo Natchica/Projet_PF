@@ -1,4 +1,5 @@
 open Miniml_types
+open Miniml_parser
 
 (* signature minimale pour définir des variables *)
 module type VariableSpec =
@@ -41,41 +42,80 @@ module TypeVariable : VariableSpec (* with type t = int *)=
 
 
 (* ******** à compléter ********* *)
-module VarHashtbl = Hashtbl.Make(TypeVariable)
-let gamma0 = VarHashtbl.create 11
-let arithm = (CONCAT , TFun(TProd(TInt, TInt), TInt))
-let relop : token * 'a typ = (CONCAT, TFun(TProd(TVar(a), TVar(a)), TInt))
-let i = TypeVariable.fraiche() ;;
-VarHashtbl.add gamma0 i concat
-let x = Hashtbl.find_all gamma0 1
-
 
 (* create an empty environment *)
-let gamma0 : (TypeVariable.t * 'a typ) list = []
+let gamma0 : (ident * 'a typ) list = []
 
 (* add predefined types to the environment *)
-let gamma0 = (TypeVariable.fraiche(), TList(TVar('a))) :: gamma0
-let gamma0 = (TypeVariable.fraiche(), TFun(TProd(TVar('a), TVar('a)), TList(TVar('a)))) :: gamma0
-let gamma0 = (TypeVariable.fraiche(), TFun(TProd(TVar('a), TVar('b)), TProd(TVar('a), TVar('b)))) :: gamma0
-let gamma0 = (TypeVariable.fraiche(), TFun(TInt, TInt)) :: gamma0
-let gamma0 = (TypeVariable.fraiche(), TFun(TVar('a), TBool)) :: gamma0
-let gamma0 = (TypeVariable.fraiche(), TFun(TBool, TBool)) :: gamma0
-let gamma0 = (TypeVariable.fraiche(), TFun(TVar('a), TVar('a))) :: gamma0
-let gamma0 = (TypeVariable.fraiche(), TFun(TProd(TVar('a), TVar('b)), TVar('a))) :: gamma0
-let gamma0 = (TypeVariable.fraiche(), TFun(TProd(TVar('a), TVar('b)), TVar('b))) :: gamma0
-let gamma0 = (TypeVariable.fraiche(), TFun(TList(TVar('a)), TVar('a))) :: gamma0
-let gamma0 = (TypeVariable.fraiche(), TFun(TList(TVar('a)), TList(TVar('a)))) :: gamma0
 
-(* add some more types to the environment *)
-let gamma0 = (TypeVariable.fraiche(), TFun(TVar('a), TUnit)) :: gamma0
-let gamma0 = (TypeVariable.fraiche(), TFun(TProd(TVar('a), TVar('b)), TBool)) :: gamma0
+let concat = TFun(TProd(TList(TVar()), TList(TVar())), TList(TVar()))
+and cons = TFun(TProd(TVar(), TList(TVar())), TList(TVar()))
+and pair = TFun(TProd(TVar(), TVar()), TProd(TVar(), TVar()))
+and arithop = TFun(TProd(TInt, TInt), TInt)
+and relop = TFun(TProd(TVar(), TVar()), TBool)
+and boolop = TFun(TProd(TBool, TBool), TBool)
+and not =  TFun(TBool, TBool)
+and fst = TFun(TProd(TVar(), TVar()), TVar())
+and snd = TFun(TProd(TVar(), TVar()), TVar())
+and hd = TFun(TList(TVar()), TVar())
 
-(* use the environment in a type inference algorithm )
-let infer_type (e: 'a expr) (Γ: (TypeVariable.t * 'a typ) list) : 'a typ =
-( implementation of the type inference algorithm *)
-(*
-This code defines an empty environment gamma0 as a list of tuples (TypeVariable.t * 'a typ)
-, and then adds the predefined types of the standard operations such as the 
-concatenation operator for lists (@), the construction operator for lists (::), 
-the construction operator for pairs (,), arithmetic binary operators 
-*)
+and tl = TFun(TList(TVar()), TList(TVar()))
+
+let gamma0 = [("@",concat), ("::",cons), (",",pair), 
+("Arithop",arithop), ("Relop",relop), 
+("Boolop",boolop), ("not",not), ("fst",fst), 
+("snd",snd), ("hd",hd), ("tl",tl)]
+
+(* add a new type to the environment *)
+let add (x, t) gamma = (x, t) :: gamma
+
+(* find the type of a variable in the environment *)
+let rec find x = function
+  | [] -> raise Not_found
+  | (y, t) :: gamma -> if y = x then t else find x gamma
+
+
+let rec unify t1 t2 = match t1, t2 with
+  | TVar a, TVar b -> if a = b then () else failwith "Erreur de type"
+  | TVar a, _ -> if occurs a t2 then failwith "Erreur de type" else ()
+  | _, TVar a -> if occurs a t1 then failwith "Erreur de type" else ()
+  | TProd (a,b), TProd (c,d) -> unify a c; unify b d
+  | TList a, TList b -> unify a b
+  | TFun (a,b), TFun (c,d) -> unify a c; unify b d
+  | TInt, TInt -> ()
+  | TBool, TBool -> ()
+  | TUnit, TUnit -> ()
+  | _, _ -> failwith "Erreur de type"
+
+and occurs a t = match t with
+  | TVar b -> if a = b then true else false
+  | TProd (a,b) -> if occurs a t || occurs b t then true else false
+  | TList a -> if occurs a t then true else false
+  | TFun (a,b) -> if occurs a t || occurs b t then true else false
+  | TInt -> false
+  | TBool -> false
+  | TUnit -> false
+
+let rec infer gamma = function
+  | EConstant c -> (match c with
+    | CEntier _ -> TInt
+    | CBooleen _ -> TBool
+    | CNil -> TList(TVar(TypeVariable.fraiche ()))
+    | CUnit -> TUnit)
+
+  | EIdent i -> find i gamma
+  | EProd (e1,e2) ->  let a = infer gamma e1 and b = infer gamma e2 in TProd(a, b)
+  | ECons (e1,e2) -> let a = infer gamma e1 and b = infer gamma e2 in if b = TList(a) then b else failwith "Erreur de type"
+  | EFun (i,e) -> let a = TVar(TypeVariable.fraiche ()) in let gamma2 = (i,a)::gamma in let t = infer gamma2 e in TFun(a,t)
+  | EIf (e1,e2,e3) -> let t1 = infer gamma e1 in unify t1 TBool; let t2 = infer gamma e2 in let t3 = infer gamma e3 in unify t2 t3; t2
+  | EApply (e1,e2) ->  let a = TVar(TypeVariable.fraiche ()) in let t1 = infer gamma e1 in let t2 = infer gamma e2 in unify t1 (TFun(t2,a)); a
+  | EBinop tok -> (match tok with
+    | PLUS | MOINS | MULT | DIV | MOD -> TInt
+    | AND | OR | INF | SUP | INFEQ | SUPEQ | EQU | NOTEQ -> TBool
+    | _ -> TVar(TypeVariable.fraiche ())
+    )
+
+  | ELet (i,e1,e2) -> let t1 = infer gamma e1 in let gamma2 = (i,t1)::gamma in infer gamma2 e2
+  | ELetrec (i,e1,e2) -> let a = TVar(TypeVariable.fraiche ()) in let gamma2 = (i,a)::gamma in let t1 = infer gamma2 e1 in unify a t1; infer gamma2 e2
+
+  

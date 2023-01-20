@@ -24,7 +24,7 @@ module type VariableSpec =
   end
 
 (* implantation de la spécification     *)
-module TypeVariable : VariableSpec =
+module TypeVariable : VariableSpec (* with type t = int *)=
   struct
     type t = int
 
@@ -41,4 +41,37 @@ module TypeVariable : VariableSpec =
 
 
 (* ******** à compléter ********* *)
-       
+
+(* create an empty environment *)
+let gamma0 : (TypeVariable.t * 'a typ) list = []
+
+(* add predefined types to the environment *)
+
+let concat = TFun(TProd(TList(TVar()), TList(TVar())), TList(TVar()))
+and cons = TFun(TProd(TVar(), TList(TVar())), TList(TVar()))
+and pair = TFun(TProd(TVar(), TVar()), TProd(TVar(), TVar()))
+and arithop = TFun(TProd(TInt, TInt), TInt)
+and relop = TFun(TProd(TVar(), TVar()), TBool)
+and boolop = TFun(TProd(TBool, TBool), TBool)
+and not =  TFun(TBool, TBool)
+and fst = TFun(TProd(TVar(), TVar()), TVar())
+and snd = TFun(TProd(TVar(), TVar()), TVar())
+and hd = TFun(TList(TVar()), TVar())
+
+and tl = TFun(TList(TVar()), TList(TVar()))
+
+let gamma0 = [(TypeVariable.fraiche(),concat), (TypeVariable.fraiche(),cons), (TypeVariable.fraiche(),pair), 
+(TypeVariable.fraiche(),arithop), (TypeVariable.fraiche(),relop), 
+(TypeVariable.fraiche(),boolop), (TypeVariable.fraiche(),not), (TypeVariable.fraiche(),fst), 
+(TypeVariable.fraiche(),snd), (TypeVariable.fraiche(),hd), (TypeVariable.fraiche(),tl)]
+
+(* add a new type to the environment *)
+let add (x, t) gamma = (x, t) :: gamma
+
+(* find the type of a variable in the environment *)
+let rec find x = function
+  | [] -> raise Not_found
+  | (y, t) :: gamma -> if TypeVariable.equal x y then t else find x gamma
+
+
+(* Type inference algorithm *)
