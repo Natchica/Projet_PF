@@ -5,6 +5,7 @@ open Miniml
 open Miniml_lexer
 open Miniml_parser
 open Miniml_typer
+open Miniml_printer
 open Lazyflux
 
 (* ******** à compléter ********* *)
@@ -19,9 +20,7 @@ let main () =
     let rec loop f = match Flux.uncons f with
       | None -> print_endline "End of file"
       | Some _ -> 
-        let (b, next) = parseE f in 
-        if b then (print_endline "Line ok"; loop next) 
-        else print_endline "Ko"
+        let (expr, next) = parseE f in print_expr Format.std_formatter expr; print_endline "\n"; loop next
     in loop flux
 
    

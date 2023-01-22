@@ -1,10 +1,10 @@
-# dune build
+# C:\OCaml64\home\loris\.opam\4.14.0+mingw64c\bin\dune.exe build
 # OCAMLPARAM: unset
 # Shared cache: disabled
-# Workspace root: "/Users/switch/Documents/Ecole/2A/Programmation
-# fonctionnelle/Projet/Sans titre/Projet_PF/miniml_distrib_etud"
+# Workspace root:
+# "C:\\Users\\loris\\Desktop\\cours\\Projet_PF\\miniml_distrib_etud"
 # Auto-detected concurrency: 4
-$ /Users/switch/.opam/4.12.0/bin/ocamlc.opt -config > /var/folders/r_/8vhdn60s4gj6jj4r22z8zg6m0000gn/T/dune_42a337_output
+$ C:\OCaml64\home\loris\.opam\4.14.0+mingw64c\bin\ocamlc.opt.exe -config > C:\OCaml64\tmp\dune_86c343_output
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
@@ -13,105 +13,128 @@ $ /Users/switch/.opam/4.12.0/bin/ocamlc.opt -config > /var/folders/r_/8vhdn60s4g
 #  ; for_host = None
 #  ; fdo_target_exe = None
 #  ; build_dir = "default"
-#  ; toplevel_path = Some External "/Users/switch/.opam/4.12.0/lib/toplevel"
-#  ; ocaml_bin = External "/Users/switch/.opam/4.12.0/bin"
-#  ; ocaml = Ok External "/Users/switch/.opam/4.12.0/bin/ocaml"
-#  ; ocamlc = External "/Users/switch/.opam/4.12.0/bin/ocamlc.opt"
-#  ; ocamlopt = Ok External "/Users/switch/.opam/4.12.0/bin/ocamlopt.opt"
-#  ; ocamldep = Ok External "/Users/switch/.opam/4.12.0/bin/ocamldep.opt"
-#  ; ocamlmklib = Ok External "/Users/switch/.opam/4.12.0/bin/ocamlmklib.opt"
+#  ; toplevel_path =
+#      Some External "C:/OCaml64/home/loris/.opam/4.14.0+mingw64c/lib/toplevel"
+#  ; ocaml_bin =
+#      External "C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\\bin"
+#  ; ocaml =
+#      Ok
+#        External
+#          "C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\\bin\\ocaml.exe"
+#  ; ocamlc =
+#      External
+#        "C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\\bin\\ocamlc.opt.exe"
+#  ; ocamlopt =
+#      Ok
+#        External
+#          "C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\\bin\\ocamlopt.opt.exe"
+#  ; ocamldep =
+#      Ok
+#        External
+#          "C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\\bin\\ocamldep.opt.exe"
+#  ; ocamlmklib =
+#      Ok
+#        External
+#          "C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\\bin\\ocamlmklib.opt.exe"
 #  ; env =
 #      map
-#        { "DUNE_OCAML_HARDCODED" : "/Users/switch/.opam/4.12.0/lib"
-#        ; "DUNE_OCAML_STDLIB" : "/Users/switch/.opam/4.12.0/lib/ocaml"
+#        { "DUNE_OCAML_HARDCODED" :
+#            "C:\\\\OCaml64\\\\home\\\\loris\\\\.opam\\\\4.14.0+mingw64c\\lib"
+#        ; "DUNE_OCAML_STDLIB" :
+#            "C:/OCaml64/home/loris/.opam/4.14.0+mingw64c/lib/ocaml"
 #        ; "DUNE_SOURCEROOT" :
-#            "/Users/switch/Documents/Ecole/2A/Programmation fonctionnelle/Projet/Sans titre/Projet_PF/miniml_distrib_etud"
+#            "C:\\Users\\loris\\Desktop\\cours\\Projet_PF\\miniml_distrib_etud"
 #        ; "INSIDE_DUNE" :
-#            "/Users/switch/Documents/Ecole/2A/Programmation fonctionnelle/Projet/Sans titre/Projet_PF/miniml_distrib_etud/_build/default"
+#            "C:\\Users\\loris\\Desktop\\cours\\Projet_PF\\miniml_distrib_etud\\_build/default"
 #        ; "MANPATH" :
-#            "/Users/switch/Documents/Ecole/2A/Programmation fonctionnelle/Projet/Sans titre/Projet_PF/miniml_distrib_etud/_build/install/default/bin"
-#        ; "OCAMLFIND_IGNORE_DUPS_IN" :
-#            "/Users/switch/Documents/Ecole/2A/Programmation fonctionnelle/Projet/Sans titre/Projet_PF/miniml_distrib_etud/_build/install/default/lib"
-#        ; "OCAMLPATH" :
-#            "/Users/switch/Documents/Ecole/2A/Programmation fonctionnelle/Projet/Sans titre/Projet_PF/miniml_distrib_etud/_build/install/default/lib"
-#        ; "OCAMLTOP_INCLUDE_PATH" :
-#            "/Users/switch/Documents/Ecole/2A/Programmation fonctionnelle/Projet/Sans titre/Projet_PF/miniml_distrib_etud/_build/install/default/lib/toplevel"
+#            "C:\\Users\\loris\\Desktop\\cours\\Projet_PF\\miniml_distrib_etud\\_build/install/default/bin"
 #        ; "OCAML_COLOR" : "always"
+#        ; "OCAMLFIND_IGNORE_DUPS_IN" :
+#            "C:\\Users\\loris\\Desktop\\cours\\Projet_PF\\miniml_distrib_etud\\_build/install/default/lib"
+#        ; "OCAMLPATH" :
+#            "C:\\Users\\loris\\Desktop\\cours\\Projet_PF\\miniml_distrib_etud\\_build/install/default/lib"
+#        ; "OCAMLTOP_INCLUDE_PATH" :
+#            "C:\\Users\\loris\\Desktop\\cours\\Projet_PF\\miniml_distrib_etud\\_build/install/default/lib/toplevel"
 #        ; "OPAMCOLOR" : "always"
 #        }
-#  ; findlib_paths = [ External "/Users/switch/.opam/4.12.0/lib" ]
+#  ; findlib_paths =
+#      [ External
+#          "C:\\\\OCaml64\\\\home\\\\loris\\\\.opam\\\\4.14.0+mingw64c\\lib"
+#      ]
 #  ; arch_sixtyfour = true
 #  ; natdynlink_supported = true
 #  ; supports_shared_libraries = true
 #  ; ocaml_config =
-#      { version = "4.12.0"
-#      ; standard_library_default = "/Users/switch/.opam/4.12.0/lib/ocaml"
-#      ; standard_library = "/Users/switch/.opam/4.12.0/lib/ocaml"
+#      { version = "4.14.0"
+#      ; standard_library_default =
+#          "C:/cygwin/home/appveyor/.opam/4.14.0+mingw64c/lib/ocaml"
+#      ; standard_library =
+#          "C:/OCaml64/home/loris/.opam/4.14.0+mingw64c/lib/ocaml"
 #      ; standard_runtime = "the_standard_runtime_variable_was_deleted"
 #      ; ccomp_type = "cc"
-#      ; c_compiler = "cc"
-#      ; ocamlc_cflags = [ "-O2"; "-fno-strict-aliasing"; "-fwrapv" ]
-#      ; ocamlc_cppflags = [ "-D_FILE_OFFSET_BITS=64"; "-D_REENTRANT" ]
-#      ; ocamlopt_cflags = [ "-O2"; "-fno-strict-aliasing"; "-fwrapv" ]
-#      ; ocamlopt_cppflags = [ "-D_FILE_OFFSET_BITS=64"; "-D_REENTRANT" ]
+#      ; c_compiler = "x86_64-w64-mingw32-gcc"
+#      ; ocamlc_cflags =
+#          [ "-O2"; "-fno-strict-aliasing"; "-fwrapv"; "-mms-bitfields" ]
+#      ; ocamlc_cppflags = []
+#      ; ocamlopt_cflags =
+#          [ "-O2"; "-fno-strict-aliasing"; "-fwrapv"; "-mms-bitfields" ]
+#      ; ocamlopt_cppflags = []
 #      ; bytecomp_c_compiler =
-#          [ "cc"
+#          [ "x86_64-w64-mingw32-gcc"
 #          ; "-O2"
 #          ; "-fno-strict-aliasing"
 #          ; "-fwrapv"
-#          ; "-D_FILE_OFFSET_BITS=64"
-#          ; "-D_REENTRANT"
+#          ; "-mms-bitfields"
 #          ]
-#      ; bytecomp_c_libraries = [ "-lm"; "-lpthread" ]
+#      ; bytecomp_c_libraries = [ "-lws2_32"; "-lversion" ]
 #      ; native_c_compiler =
-#          [ "cc"
+#          [ "x86_64-w64-mingw32-gcc"
 #          ; "-O2"
 #          ; "-fno-strict-aliasing"
 #          ; "-fwrapv"
-#          ; "-D_FILE_OFFSET_BITS=64"
-#          ; "-D_REENTRANT"
+#          ; "-mms-bitfields"
 #          ]
-#      ; native_c_libraries = [ "-lm" ]
-#      ; native_pack_linker = [ "ld"; "-r"; "-o" ]
+#      ; native_c_libraries = [ "-lws2_32"; "-lversion" ]
+#      ; native_pack_linker = [ "x86_64-w64-mingw32-ld"; "-r"; "-o" ]
 #      ; cc_profile = []
 #      ; architecture = "amd64"
 #      ; model = "default"
 #      ; int_size = 63
 #      ; word_size = 64
-#      ; system = "macosx"
-#      ; asm = [ "clang"; "-arch"; "x86_64"; "-Wno-trigraphs"; "-c" ]
-#      ; asm_cfi_supported = true
+#      ; system = "mingw64"
+#      ; asm = [ "x86_64-w64-mingw32-gcc"; "-c" ]
+#      ; asm_cfi_supported = false
 #      ; with_frame_pointers = false
-#      ; ext_exe = ""
+#      ; ext_exe = ".exe"
 #      ; ext_obj = ".o"
 #      ; ext_asm = ".s"
 #      ; ext_lib = ".a"
-#      ; ext_dll = ".so"
-#      ; os_type = "Unix"
-#      ; default_executable_name = "a.out"
+#      ; ext_dll = ".dll"
+#      ; os_type = "Win32"
+#      ; default_executable_name = "camlprog.exe"
 #      ; systhread_supported = true
-#      ; host = "x86_64-apple-darwin21.4.0"
-#      ; target = "x86_64-apple-darwin21.4.0"
+#      ; host = "x86_64-w64-mingw32"
+#      ; target = "x86_64-w64-mingw32"
 #      ; profiling = false
 #      ; flambda = false
 #      ; spacetime = false
 #      ; safe_string = true
-#      ; exec_magic_number = "Caml1999X029"
-#      ; cmi_magic_number = "Caml1999I029"
-#      ; cmo_magic_number = "Caml1999O029"
-#      ; cma_magic_number = "Caml1999A029"
-#      ; cmx_magic_number = "Caml1999Y029"
-#      ; cmxa_magic_number = "Caml1999Z029"
-#      ; ast_impl_magic_number = "Caml1999M029"
-#      ; ast_intf_magic_number = "Caml1999N029"
-#      ; cmxs_magic_number = "Caml1999D029"
-#      ; cmt_magic_number = "Caml1999T029"
+#      ; exec_magic_number = "Caml1999X031"
+#      ; cmi_magic_number = "Caml1999I031"
+#      ; cmo_magic_number = "Caml1999O031"
+#      ; cma_magic_number = "Caml1999A031"
+#      ; cmx_magic_number = "Caml1999Y031"
+#      ; cmxa_magic_number = "Caml1999Z031"
+#      ; ast_impl_magic_number = "Caml1999M031"
+#      ; ast_intf_magic_number = "Caml1999N031"
+#      ; cmxs_magic_number = "Caml1999D031"
+#      ; cmt_magic_number = "Caml1999T031"
 #      ; natdynlink_supported = true
 #      ; supports_shared_libraries = true
-#      ; windows_unicode = false
+#      ; windows_unicode = true
 #      }
 #  }
-$ (cd _build/default && /Users/switch/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I bin/.miniml_principal.eobjs/byte -I /Users/switch/.opam/4.12.0/lib/base -I /Users/switch/.opam/4.12.0/lib/base/base_internalhash_types -I /Users/switch/.opam/4.12.0/lib/base/caml -I /Users/switch/.opam/4.12.0/lib/base/shadow_stdlib -I /Users/switch/.opam/4.12.0/lib/jane-street-headers -I /Users/switch/.opam/4.12.0/lib/ppx_compare/runtime-lib -I /Users/switch/.opam/4.12.0/lib/ppx_enumerate/runtime-lib -I /Users/switch/.opam/4.12.0/lib/ppx_hash/runtime-lib -I /Users/switch/.opam/4.12.0/lib/ppx_inline_test/config -I /Users/switch/.opam/4.12.0/lib/ppx_inline_test/runtime-lib -I /Users/switch/.opam/4.12.0/lib/ppx_sexp_conv/runtime-lib -I /Users/switch/.opam/4.12.0/lib/sexplib0 -I /Users/switch/.opam/4.12.0/lib/time_now -I lib/.miniml.objs/byte -no-alias-deps -opaque -o bin/.miniml_principal.eobjs/byte/dune__exe__Miniml_principal.cmo -c -impl bin/miniml_principal.ml)
+$ (cd _build/default && C:\OCaml64\home\loris\.opam\4.14.0+mingw64c\bin\ocamlc.opt.exe -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I bin/.miniml_principal.eobjs/byte -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\base -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\base\base_internalhash_types -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\base\caml -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\base\shadow_stdlib -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\jane-street-headers -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\ppx_compare\runtime-lib -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\ppx_enumerate\runtime-lib -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\ppx_hash\runtime-lib -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\ppx_inline_test\config -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\ppx_inline_test\runtime-lib -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\ppx_sexp_conv\runtime-lib -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\sexplib0 -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\time_now -I lib/.miniml.objs/byte -no-alias-deps -opaque -o bin/.miniml_principal.eobjs/byte/dune__exe__Miniml_principal.cmo -c -impl bin/miniml_principal.ml)
 > File "bin/miniml_principal.ml", line 5, characters 0-17:
 > 5 | open Miniml_lexer
 >     ^^^^^^^^^^^^^^^^^
@@ -120,7 +143,7 @@ $ (cd _build/default && /Users/switch/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28
 > 7 | open Miniml_typer
 >     ^^^^^^^^^^^^^^^^^
 > Warning 33 [unused-open]: unused open Miniml.Miniml_typer.
-$ (cd _build/default && /Users/switch/.opam/4.12.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -I bin/.miniml_principal.eobjs/byte -I bin/.miniml_principal.eobjs/native -I /Users/switch/.opam/4.12.0/lib/base -I /Users/switch/.opam/4.12.0/lib/base/base_internalhash_types -I /Users/switch/.opam/4.12.0/lib/base/caml -I /Users/switch/.opam/4.12.0/lib/base/shadow_stdlib -I /Users/switch/.opam/4.12.0/lib/jane-street-headers -I /Users/switch/.opam/4.12.0/lib/ppx_compare/runtime-lib -I /Users/switch/.opam/4.12.0/lib/ppx_enumerate/runtime-lib -I /Users/switch/.opam/4.12.0/lib/ppx_hash/runtime-lib -I /Users/switch/.opam/4.12.0/lib/ppx_inline_test/config -I /Users/switch/.opam/4.12.0/lib/ppx_inline_test/runtime-lib -I /Users/switch/.opam/4.12.0/lib/ppx_sexp_conv/runtime-lib -I /Users/switch/.opam/4.12.0/lib/sexplib0 -I /Users/switch/.opam/4.12.0/lib/time_now -I lib/.miniml.objs/byte -I lib/.miniml.objs/native -intf-suffix .ml -no-alias-deps -opaque -o bin/.miniml_principal.eobjs/native/dune__exe__Miniml_principal.cmx -c -impl bin/miniml_principal.ml)
+$ (cd _build/default && C:\OCaml64\home\loris\.opam\4.14.0+mingw64c\bin\ocamlopt.opt.exe -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -I bin/.miniml_principal.eobjs/byte -I bin/.miniml_principal.eobjs/native -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\base -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\base\base_internalhash_types -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\base\caml -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\base\shadow_stdlib -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\jane-street-headers -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\ppx_compare\runtime-lib -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\ppx_enumerate\runtime-lib -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\ppx_hash\runtime-lib -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\ppx_inline_test\config -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\ppx_inline_test\runtime-lib -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\ppx_sexp_conv\runtime-lib -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\sexplib0 -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\time_now -I lib/.miniml.objs/byte -I lib/.miniml.objs/native -intf-suffix .ml -no-alias-deps -opaque -o bin/.miniml_principal.eobjs/native/dune__exe__Miniml_principal.cmx -c -impl bin/miniml_principal.ml)
 > File "bin/miniml_principal.ml", line 5, characters 0-17:
 > 5 | open Miniml_lexer
 >     ^^^^^^^^^^^^^^^^^
@@ -129,5 +152,5 @@ $ (cd _build/default && /Users/switch/.opam/4.12.0/bin/ocamlopt.opt -w @1..3@5..
 > 7 | open Miniml_typer
 >     ^^^^^^^^^^^^^^^^^
 > Warning 33 [unused-open]: unused open Miniml.Miniml_typer.
-$ (cd _build/default && /Users/switch/.opam/4.12.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -o bin/miniml_principal.exe /Users/switch/.opam/4.12.0/lib/ppx_inline_test/config/inline_test_config.cmxa /Users/switch/.opam/4.12.0/lib/base/base_internalhash_types/base_internalhash_types.cmxa -I /Users/switch/.opam/4.12.0/lib/base/base_internalhash_types /Users/switch/.opam/4.12.0/lib/base/caml/caml.cmxa /Users/switch/.opam/4.12.0/lib/sexplib0/sexplib0.cmxa /Users/switch/.opam/4.12.0/lib/base/shadow_stdlib/shadow_stdlib.cmxa /Users/switch/.opam/4.12.0/lib/base/base.cmxa -I /Users/switch/.opam/4.12.0/lib/base /Users/switch/.opam/4.12.0/lib/jane-street-headers/jane_street_headers.cmxa /Users/switch/.opam/4.12.0/lib/ppx_sexp_conv/runtime-lib/ppx_sexp_conv_lib.cmxa /Users/switch/.opam/4.12.0/lib/ppx_compare/runtime-lib/ppx_compare_lib.cmxa /Users/switch/.opam/4.12.0/lib/ppx_enumerate/runtime-lib/ppx_enumerate_lib.cmxa /Users/switch/.opam/4.12.0/lib/ppx_hash/runtime-lib/ppx_hash_lib.cmxa /Users/switch/.opam/4.12.0/lib/time_now/time_now.cmxa -I /Users/switch/.opam/4.12.0/lib/time_now /Users/switch/.opam/4.12.0/lib/ppx_inline_test/runtime-lib/ppx_inline_test_lib.cmxa lib/miniml.cmxa bin/.miniml_principal.eobjs/native/dune__exe__Miniml_principal.cmx)
+$ (cd _build/default && C:\OCaml64\home\loris\.opam\4.14.0+mingw64c\bin\ocamlopt.opt.exe -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -o bin/miniml_principal.exe C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\ppx_inline_test\config/inline_test_config.cmxa C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\base\base_internalhash_types/base_internalhash_types.cmxa -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\base\base_internalhash_types C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\base\caml/caml.cmxa C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\sexplib0\sexplib0.cmxa C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\base\shadow_stdlib/shadow_stdlib.cmxa C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\base\base.cmxa -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\base C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\jane-street-headers\jane_street_headers.cmxa C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\ppx_sexp_conv\runtime-lib/ppx_sexp_conv_lib.cmxa C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\ppx_compare\runtime-lib/ppx_compare_lib.cmxa C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\ppx_enumerate\runtime-lib/ppx_enumerate_lib.cmxa C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\ppx_hash\runtime-lib/ppx_hash_lib.cmxa C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\time_now\time_now.cmxa -I C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\time_now C:\\OCaml64\\home\\loris\\.opam\\4.14.0+mingw64c\lib\ppx_inline_test\runtime-lib/ppx_inline_test_lib.cmxa lib/miniml.cmxa bin/.miniml_principal.eobjs/native/dune__exe__Miniml_principal.cmx)
 # Promoting "_build/default/bin/miniml_principal.exe" to "miniml_principal.exe"

@@ -97,9 +97,9 @@ let accept : token -> token Flux.t -> token Flux.t = fun expected flux ->
   let (a, next) = pickAndAdvance flux in
     if a = expected then next else failwith "Parsing Error" 
 
-let acceptIdent : token Flux.t -> (ident, token Flux.t) = function flux ->
+let acceptIdent : token Flux.t -> (ident * token Flux.t) = function flux ->
   let (a, next) = pickAndAdvance flux in
-    if isident a then (uident a, next) else failwith "Parsing Error"
+    if isident a then (unident a, next) else failwith "Parsing Error"
 
 let acceptInt : token Flux.t -> token Flux.t = function flux ->
   let (a, next) = pickAndAdvance flux in
@@ -126,15 +126,14 @@ let (>>=) flux f = f flux
 (*    -> ident               *)
 (*    -> Constant            *)
 let rec parseE : token Flux.t -> expr * token Flux.t = function flux ->
-  (print_string "Expr -> ");
   let (a, next) = pickAndAdvance flux in
   match a with
   | LET -> parseLet next
   | PARO -> parseY next
-  | IF -> let (exp1, next1) = (parse E next) in let (exp2, next2) = parse E (next1 >>= accept THEN) in 
+  | IF -> let (exp1, next1) = (parseE next) in let (exp2, next2) = parseE (next1 >>= accept THEN) in 
     let (exp3, next3) = parseE (next2 >>= accept ELSE) in (EIf(exp1, exp2, exp3), next3)
   | IDENT i -> (EIdent(i), next)
-  | _ -> ParseC flux
+  | _ -> parseC flux
 
 (*  X -> L in E      *)
 (*    -> rec L in E  *)
@@ -159,7 +158,6 @@ and parseY : token Flux.t -> (expr * token Flux.t) = function flux ->
 (*    -> )      *)
 (*    -> E )    *)
 and parseZ : token Flux.t -> (expr * token Flux.t) = function flux ->
-  (print_string "( Expr -> ");
   let (exp1, next) = parseE flux in let (a, next1) = pickAndAdvance next in 
   match a with
   | PARF -> (exp1, next)
@@ -170,8 +168,8 @@ and parseZ : token Flux.t -> (expr * token Flux.t) = function flux ->
 and parseC : token Flux.t -> (expr * token Flux.t) = function flux ->
   let (a, next) = pickAndAdvance flux in
   match a with
-  | INT i -> (CEntier(i), next)
-  | BOOL b -> (CBooleen(b), next)
-  | CROO -> let next1 = next >>= accept CROF in (CNil, next1)
-  | PARO -> let next1 = next >>= accept PARF in (CUnit, next1)
+  | INT i -> (EConstant(CEntier(i)), next)
+  | BOOL b -> (EConstant(CBooleen(b)), next)
+  | CROO -> let next1 = next >>= accept CROF in (EConstant(CNil), next1)
+  | PARO -> let next1 = next >>= accept PARF in (EConstant(CUnit), next1)
   | _ -> failwith "Parsing Error"

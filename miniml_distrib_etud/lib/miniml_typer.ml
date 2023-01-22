@@ -88,10 +88,10 @@ let rec unify t1 t2 = match t1, t2 with
   | _, _ -> failwith "Erreur de type"
 
 and occurs a t = match t with
-  | TVar b -> if a = b then true else false
-  | TProd (a,b) -> if occurs a t || occurs b t then true else false
-  | TList a -> if occurs a t then true else false
-  | TFun (a,b) -> if occurs a t || occurs b t then true else false
+  | TVar b -> a = b
+  | TProd (t1,t2) -> (occurs a t1) || (occurs a t2)
+  | TList t1 -> occurs a t1
+  | TFun (t1, t2) -> occurs a t1 || occurs a t2
   | TInt -> false
   | TBool -> false
   | TUnit -> false
