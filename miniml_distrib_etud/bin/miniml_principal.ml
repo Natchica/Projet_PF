@@ -17,10 +17,16 @@ let main () =
     let flux = read_miniml_tokens_from_file Sys.argv.(1) in
 
     let rec loop f = match Flux.uncons f with
-      | None -> print_endline "End of file"
-      | Some _ -> 
-        let (expr, next) = parseE f in print_expr Format.std_formatter expr; loop next
+      | None -> ()
+      | Some _ -> print_newline ();
+        let (expr, next) = parseE f in let t = infer gamma0 expr in
+        Format.fprintf Format.std_formatter "Expr : ";
+        print_expr Format.std_formatter expr;
+        Format.fprintf Format.std_formatter "\t\tTyp : ";
+        print_typ TypeVariable.fprintf Format.std_formatter t;
+        Format.fprintf Format.std_formatter "\n";
+        loop next;
     in loop flux
-;;
+  ;;
 
 main();;

@@ -6,8 +6,8 @@ open Miniml_types
 (* pour la sortie standard          *) 
 let print_constant fmt c =
   match c with
-  | CBooleen b   -> Format.fprintf fmt "%b" b
-  | CEntier   i  -> Format.fprintf fmt "%d" i
+  | CBooleen(b)   -> Format.fprintf fmt "%b" b
+  | CEntier(i)  -> Format.fprintf fmt "%d" i
   | CNil         -> Format.fprintf fmt "[]"
   | CUnit        -> Format.fprintf fmt "()"
 

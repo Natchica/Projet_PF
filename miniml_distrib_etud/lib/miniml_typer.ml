@@ -25,7 +25,7 @@ module type VariableSpec =
   end
 
 (* implantation de la spécification     *)
-module TypeVariable : VariableSpec (* with type t = int *)=
+module TypeVariable : VariableSpec =
   struct
     type t = int
 
@@ -48,23 +48,22 @@ let gamma0 : (ident * 'a typ) list = []
 
 (* add predefined types to the environment *)
 
-let concat = TFun(TProd(TList(TVar()), TList(TVar())), TList(TVar()))
-and cons = TFun(TProd(TVar(), TList(TVar())), TList(TVar()))
-and pair = TFun(TProd(TVar(), TVar()), TProd(TVar(), TVar()))
+let concat = TFun(TProd(TList(TVar(TypeVariable.fraiche())), TList(TVar(TypeVariable.fraiche()))), TList(TVar(TypeVariable.fraiche())))
+and cons = TFun(TProd(TVar(TypeVariable.fraiche()), TList(TVar(TypeVariable.fraiche()))), TList(TVar(TypeVariable.fraiche())))
+and pair = TFun(TProd(TVar(TypeVariable.fraiche()), TVar(TypeVariable.fraiche())), TProd(TVar(TypeVariable.fraiche()), TVar(TypeVariable.fraiche())))
 and arithop = TFun(TProd(TInt, TInt), TInt)
-and relop = TFun(TProd(TVar(), TVar()), TBool)
+and relop = TFun(TProd(TVar(TypeVariable.fraiche()), TVar(TypeVariable.fraiche())), TBool)
 and boolop = TFun(TProd(TBool, TBool), TBool)
 and not =  TFun(TBool, TBool)
-and fst = TFun(TProd(TVar(), TVar()), TVar())
-and snd = TFun(TProd(TVar(), TVar()), TVar())
-and hd = TFun(TList(TVar()), TVar())
+and fst = TFun(TProd(TVar(TypeVariable.fraiche()), TVar(TypeVariable.fraiche())), TVar(TypeVariable.fraiche()))
+and snd = TFun(TProd(TVar(TypeVariable.fraiche()), TVar(TypeVariable.fraiche())), TVar(TypeVariable.fraiche()))
+and hd = TFun(TList(TVar(TypeVariable.fraiche())), TVar(TypeVariable.fraiche()))
+and tl = TFun(TList(TVar(TypeVariable.fraiche())), TList(TVar(TypeVariable.fraiche())))
 
-and tl = TFun(TList(TVar()), TList(TVar()))
-
-let gamma0 = [("@",concat), ("::",cons), (",",pair), 
-("Arithop",arithop), ("Relop",relop), 
-("Boolop",boolop), ("not",not), ("fst",fst), 
-("snd",snd), ("hd",hd), ("tl",tl)]
+let gamma0 = [("@",concat); ("::",cons); (",",pair); 
+("Arithop",arithop); ("Relop",relop); 
+("Boolop",boolop); ("not",not); ("fst",fst); 
+("snd",snd); ("hd",hd); ("tl",tl)]
 
 (* add a new type to the environment *)
 let add (x, t) gamma = (x, t) :: gamma
