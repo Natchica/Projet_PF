@@ -16,16 +16,11 @@ open Lazyflux
 let main () =
     let flux = read_miniml_tokens_from_file Sys.argv.(1) in
 
-
-    let rec loop f = match Flux.uncons f with
+    let rec loop f = print_endline "\n"; match Flux.uncons f with
       | None -> print_endline "End of file"
       | Some _ -> 
-        let (expr, next) = parseE f in print_expr Format.std_formatter expr; print_endline "\n"; loop next
+        let (expr, next) = parseE f in print_expr Format.std_formatter expr; loop next
     in loop flux
-
-   
-
-
 ;;
 
 main();;

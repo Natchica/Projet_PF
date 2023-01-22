@@ -151,7 +151,8 @@ and parseLet : token Flux.t -> (expr * token Flux.t) = function flux ->
 and parseY : token Flux.t -> (expr * token Flux.t) = function flux ->
   let (a, next) = pickAndAdvance flux in
   match a with
-  | FUN -> let (i, next1) = (next >>= acceptIdent) in let (exp, next1) = parseE (next1 >>= accept TO) in (EFun(i, exp), next1)
+  | FUN -> let (i, next1) = (next >>= acceptIdent) in let (exp, next1) = parseE (next1 >>= accept TO) 
+    in let next2 = next1 >>= accept PARF in (EFun(i, exp), next2)
   | _ -> parseZ flux
 
 (*  Z -> B E )  *)
@@ -161,8 +162,9 @@ and parseZ : token Flux.t -> (expr * token Flux.t) = function flux ->
   let (exp1, next) = parseE flux in let (a, next1) = pickAndAdvance next in 
   match a with
   | PARF -> (exp1, next)
-  | PLUS | MOINS | MULT | DIV | AND | OR | EQU | NOTEQ | INFEQ | INF | SUPEQ | SUP | CONCAT | CONS -> let b = EBinop a in let (_, next2) = parseE next1 in (b, next2) 
-  | _ -> let (exp2, next2) = parseE next in (EApply(exp1, exp2), next2)
+  | PLUS | MOINS | MULT | DIV | AND | OR | EQU | NOTEQ | INFEQ | INF | SUPEQ | SUP | CONCAT | CONS -> let b = EBinop a 
+    in let (_, next2) = parseE next1 in let next3 = next2 >>= accept PARF in (b, next3) 
+  | _ -> let (exp2, next2) = parseE next in let next3 = next2 >>= accept PARF in (EApply(exp1, exp2), next3)
 
 (*  C -> entier | booleen | [] | ()  *)
 and parseC : token Flux.t -> (expr * token Flux.t) = function flux ->
