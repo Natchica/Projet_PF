@@ -93,26 +93,23 @@ let pickAndAdvance : token Flux.t -> (token * token Flux.t) = fun tokens ->
   | None -> failwith "Le flux est vide"
   | Some(a, next) -> (a, next)
 
-let inject : token Flux.t -> (bool * token Flux.t) = function flux -> (true, flux)
+let accept : token -> token Flux.t -> token Flux.t = fun expected flux ->
+  let (a, next) = pickAndAdvance flux in
+    if a = expected then next else failwith "Parsing Error" 
 
-let accept : token -> token Flux.t -> (bool * token Flux.t) = fun expected flux ->
-  let (a, next) = pickAndAdvance flux in 
-    match a with
-    | a when a = expected -> (true, next)
-    | _ -> (false, next)
+let acceptIdent : token Flux.t -> (ident, token Flux.t) = function flux ->
+  let (a, next) = pickAndAdvance flux in
+    if isident a then (uident a, next) else failwith "Parsing Error"
 
-let acceptIdent : token Flux.t -> (bool * token Flux.t) = function flux ->
-  let (a, next) = pickAndAdvance flux in (isident a, next)
+let acceptInt : token Flux.t -> token Flux.t = function flux ->
+  let (a, next) = pickAndAdvance flux in
+    if isint a then next else failwith "Parsing Error"
 
-let acceptInt : token Flux.t -> (bool * token Flux.t) = function flux ->
-  let (a, next) = pickAndAdvance flux in (isint a, next)
+let acceptBool : token Flux.t -> token Flux.t = function flux ->
+  let (a, next) = pickAndAdvance flux in
+    if isbool a then next else failwith "Parsing Error"
 
-let acceptBool : token Flux.t -> (bool * token Flux.t) = function flux ->
-  let (a, next) = pickAndAdvance flux in (isbool a, next)
-
-let (>>=) (b, next) f = 
-  if b then f next
-  else (false, next)
+let (>>=) flux f = f flux
 
 
 (* parseE : parseur d'une expression *)
@@ -128,103 +125,53 @@ let (>>=) (b, next) f =
 (*    -> if E then E else E  *)
 (*    -> ident               *)
 (*    -> Constant            *)
-let rec parseE : token Flux.t -> (bool * token Flux.t) = function flux ->
+let rec parseE : token Flux.t -> expr * token Flux.t = function flux ->
   (print_string "Expr -> ");
   let (a, next) = pickAndAdvance flux in
   match a with
-  | LET -> inject flux >>= accept LET >>= parseX
-  | PARO -> inject flux >>= accept PARO >>= parseY
-  | IF -> inject flux >>= accept IF >>= parseE >>= accept THEN >>= parseE >>= accept ELSE >>= parseE
-  | IDENT _ -> inject flux >>= acceptIdent
-  | _ -> inject flux >>= parseC
+  | LET -> parseLet next
+  | PARO -> parseY next
+  | IF -> let (exp1, next1) = (parse E next) in let (exp2, next2) = parse E (next1 >>= accept THEN) in 
+    let (exp3, next3) = parseE (next2 >>= accept ELSE) in (EIf(exp1, exp2, exp3), next3)
+  | IDENT i -> (EIdent(i), next)
+  | _ -> ParseC flux
 
 (*  X -> L in E      *)
 (*    -> rec L in E  *)
-and parseX : token Flux.t -> (bool * token Flux.t) = function flux ->
-  (print_string "let -> ");
+and parseLet : token Flux.t -> (expr * token Flux.t) = function flux ->
   let (a, next) = pickAndAdvance flux in
   match a with
-  | IDENT _ -> inject flux >>= parseL >>= accept IN >>= parseE
-  | REC -> inject flux >>= accept REC >>= parseL >>= accept IN >>= parseE
-  | _ -> failwith "erreur parseX"
+  | IDENT i -> let (exp1, next1) = parseE (next >>= accept EQU) in let (exp2, next2) = parseE (next1 >>= accept IN) 
+    in (ELet(i, exp1, exp2), next2) 
+  | REC -> let (i, next1) = (next >>= acceptIdent) in let (exp1, next2) = parseE (next1 >>= accept EQU) 
+    in let (exp2, next3) = parseE (next2 >>= accept IN) in (ELetrec(i, exp1, exp2), next3) 
+  | _ -> failwith "Parsing Error"
 
 (*  Y -> E Z             *)
 (*    -> fun ident -> E )  *)
-and parseY : token Flux.t -> (bool * token Flux.t) = function flux ->
-  (print_string "( -> ");
+and parseY : token Flux.t -> (expr * token Flux.t) = function flux ->
   let (a, next) = pickAndAdvance flux in
   match a with
-  | FUN -> inject flux >>= accept FUN >>= acceptIdent >>= accept TO >>= parseE >>= accept PARF
-  | _ -> inject flux >>= parseE >>= parseZ
+  | FUN -> let (i, next1) = (next >>= acceptIdent) in let (exp, next1) = parseE (next1 >>= accept TO) in (EFun(i, exp), next1)
+  | _ -> parseZ flux
 
 (*  Z -> B E )  *)
 (*    -> )      *)
 (*    -> E )    *)
-and parseZ : token Flux.t -> (bool * token Flux.t) = function flux ->
+and parseZ : token Flux.t -> (expr * token Flux.t) = function flux ->
   (print_string "( Expr -> ");
-  let (a, next) = pickAndAdvance flux in
+  let (exp1, next) = parseE flux in let (a, next1) = pickAndAdvance next in 
   match a with
-  | PARF -> inject flux >>= accept PARF
-  | PLUS | MOINS | MULT | DIV | AND | OR | EQU | NOTEQ | INFEQ | INF | SUPEQ | SUP | CONCAT | CONS -> inject flux >>= parseBi >>= parseE >>= accept PARF
-  | _ -> inject flux >>= parseE >>= accept PARF
-
-(*  L -> ident = E  *)
-and parseL : token Flux.t -> (bool * token Flux.t) = function flux ->
-  (print_string "Liaison -> ");
-  inject flux >>= acceptIdent >>= accept EQU >>= parseE
-
-(*  Bi -> A | Bo | R | @ | ::  *)
-and parseBi : token Flux.t -> (bool * token Flux.t) = function flux ->
-  (print_string "Binop -> ");
-  let (a, next) = pickAndAdvance flux in
-  match a with
-  | PLUS | MOINS | MULT | DIV -> inject flux >>= parseA
-  | AND | OR -> inject flux >>= parseBo
-  | EQU | NOTEQ | INFEQ | INF | SUPEQ | SUP -> inject flux >>= parseR
-  | CONCAT -> inject flux >>= accept CONCAT
-  | CONS -> inject flux >>= accept CONS
-  | _ -> failwith "erreur parseBi"
-
-(*  A -> + | - | * | /  *)
-and parseA : token Flux.t -> (bool * token Flux.t) = function flux ->
-  (print_string "Arithop -> ");
-  let (a, next) = pickAndAdvance flux in
-  match a with
-  | PLUS -> inject flux >>= accept PLUS
-  | MOINS -> inject flux >>= accept MOINS
-  | MULT -> inject flux >>= accept MULT
-  | DIV -> inject flux >>= accept DIV
-  | _ -> failwith "erreur parseA"
-
-(*  Bo -> && | ||  *)
-and parseBo : token Flux.t -> (bool * token Flux.t) = function flux ->
-  (print_string "(boolop -> ");
-  let (a, next) = pickAndAdvance flux in
-  match a with
-  | AND -> inject flux >>= accept AND
-  | OR -> inject flux >>= accept OR
-  | _ -> failwith "erreur parseBo"
-
-(*  R -> = | <> | <= | < | >= | >  *)
-and parseR : token Flux.t -> (bool * token Flux.t) = function flux ->
-  (print_string "Relop -> ");
-  let (a, next) = pickAndAdvance flux in
-  match a with
-  | EQU -> inject flux >>= accept EQU
-  | NOTEQ -> inject flux >>= accept NOTEQ
-  | INFEQ -> inject flux >>= accept INFEQ
-  | INF -> inject flux >>= accept INF
-  | SUPEQ -> inject flux >>= accept SUPEQ
-  | SUP -> inject flux >>= accept SUP
-  | _ -> failwith "erreur parseR"
+  | PARF -> (exp1, next)
+  | PLUS | MOINS | MULT | DIV | AND | OR | EQU | NOTEQ | INFEQ | INF | SUPEQ | SUP | CONCAT | CONS -> let b = EBinop a in let (_, next2) = parseE next1 in (b, next2) 
+  | _ -> let (exp2, next2) = parseE next in (EApply(exp1, exp2), next2)
 
 (*  C -> entier | booleen | [] | ()  *)
-and parseC : token Flux.t -> (bool * token Flux.t) = function flux ->
-  (print_string "Constant -> ");
+and parseC : token Flux.t -> (expr * token Flux.t) = function flux ->
   let (a, next) = pickAndAdvance flux in
   match a with
-  | INT _ -> inject flux >>= acceptInt
-  | BOOL _ -> inject flux >>= acceptBool
-  | CROO -> inject flux >>= accept CROO >>= accept CROF
-  | PARO -> inject flux >>= accept PARO >>= accept PARF
-  | _ -> failwith "erreur parseC"
+  | INT i -> (CEntier(i), next)
+  | BOOL b -> (CBooleen(b), next)
+  | CROO -> let next1 = next >>= accept CROF in (CNil, next1)
+  | PARO -> let next1 = next >>= accept PARF in (CUnit, next1)
+  | _ -> failwith "Parsing Error"
